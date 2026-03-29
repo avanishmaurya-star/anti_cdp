@@ -1,0 +1,14 @@
+{
+  "classes": [
+    "Constants",
+    "Encapsulation (Access Modifiers)",
+    "Function Signatures",
+    "General Error",
+    "Linking",
+    "Syntax Rules",
+    "Variable Declaration"
+  ],
+  "training_size": 69,
+  "real_samples": 35,
+  "synthetic_samples": 34
+}

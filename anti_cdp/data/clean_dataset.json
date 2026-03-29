@@ -1,0 +1,761 @@
+[
+    {
+        "file": "access_violation.cpp",
+        "original_source": "class Secret {\nprivate:\n    int code;\npublic:\n    Secret(int c) : code(c) {}\n};\n\nint main() {\n    Secret s(42);\n    s.code = 100; // Error: 'code' is private\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "'int Secret::code' is private within this context",
+        "line": 10,
+        "column": 7,
+        "ast_context": {
+            "error_line": 10,
+            "error_col": 7,
+            "source_snippet": [
+                {
+                    "lineno": 7,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 8,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 9,
+                    "text": "    Secret s(42);",
+                    "is_error": false
+                },
+                {
+                    "lineno": 10,
+                    "text": "    s.code = 100; // Error: 'code' is private",
+                    "is_error": true
+                },
+                {
+                    "lineno": 11,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 12,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Encapsulation (Access Modifiers).\nExplanation: You are trying to access a 'private' class member from outside the class. Private members are hidden for security/design reasons.\nFix: Use a public getter/setter method to access this variable, or check if you really need needed to access it directly."
+    },
+    {
+        "file": "const_violation.cpp",
+        "original_source": "int main() {\n    const int x = 10;\n    x = 20; // Error: assignment of read-only variable 'x'\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "assignment of read-only variable 'x'",
+        "line": 3,
+        "column": 9,
+        "ast_context": {
+            "error_line": 3,
+            "error_col": 9,
+            "source_snippet": [
+                {
+                    "lineno": 1,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 2,
+                    "text": "    const int x = 10;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 3,
+                    "text": "    x = 20; // Error: assignment of read-only variable 'x'",
+                    "is_error": true
+                },
+                {
+                    "lineno": 4,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Constants.\nExplanation: You declared a variable as 'const' (constant), meaning it cannot be changed, but then you tried to change it.\nFix: Remove 'const' from the declaration if you need to change it, or don't assign a new value to it."
+    },
+    {
+        "file": "linker_error.cpp",
+        "original_source": "#include <iostream>\n\n// Declaration\nvoid missingFunction();\n\nint main() {\n    missingFunction(); // Error: undefined reference\n    return 0;\n}\n",
+        "error_type": "linker error",
+        "error_message": "undefined reference to missingFunction()",
+        "line": 0,
+        "column": 0,
+        "ast_context": {
+            "error_line": 0,
+            "error_col": 0,
+            "source_snippet": [
+                {
+                    "lineno": 1,
+                    "text": "#include <iostream>",
+                    "is_error": false
+                },
+                {
+                    "lineno": 2,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 3,
+                    "text": "// Declaration",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Linking.\nExplanation: You declared a function but didn't define it, or you forgot to link a library.\nFix: Check if you have implemented all your functions."
+    },
+    {
+        "file": "missing_header.cpp",
+        "original_source": "int main() {\n    std::cout << \"Hello World\" << std::endl; // Error: <iostream> not included\n    std::vector<int> numbers; // Error: <vector> not included\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "'cout' is not a member of 'std'",
+        "line": 2,
+        "column": 5,
+        "ast_context": {
+            "error_line": 2,
+            "error_col": 5,
+            "source_snippet": [
+                {
+                    "lineno": 1,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 2,
+                    "text": "    std::cout << \"Hello World\" << std::endl; // Error: <iostream> not included",
+                    "is_error": true
+                },
+                {
+                    "lineno": 3,
+                    "text": "    std::vector<int> numbers; // Error: <vector> not included",
+                    "is_error": false
+                },
+                {
+                    "lineno": 4,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: General Error.\nExplanation: The compiler found an issue: 'cout' is not a member of 'std'\nFix: Check line 2 carefully."
+    },
+    {
+        "file": "missing_header.cpp",
+        "original_source": "int main() {\n    std::cout << \"Hello World\" << std::endl; // Error: <iostream> not included\n    std::vector<int> numbers; // Error: <vector> not included\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "'endl' is not a member of 'std'",
+        "line": 2,
+        "column": 35,
+        "ast_context": {
+            "error_line": 2,
+            "error_col": 35,
+            "source_snippet": [
+                {
+                    "lineno": 1,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 2,
+                    "text": "    std::cout << \"Hello World\" << std::endl; // Error: <iostream> not included",
+                    "is_error": true
+                },
+                {
+                    "lineno": 3,
+                    "text": "    std::vector<int> numbers; // Error: <vector> not included",
+                    "is_error": false
+                },
+                {
+                    "lineno": 4,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: General Error.\nExplanation: The compiler found an issue: 'endl' is not a member of 'std'\nFix: Check line 2 carefully."
+    },
+    {
+        "file": "missing_header.cpp",
+        "original_source": "int main() {\n    std::cout << \"Hello World\" << std::endl; // Error: <iostream> not included\n    std::vector<int> numbers; // Error: <vector> not included\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "'vector' is not a member of 'std'",
+        "line": 3,
+        "column": 5,
+        "ast_context": {
+            "error_line": 3,
+            "error_col": 5,
+            "source_snippet": [
+                {
+                    "lineno": 1,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 2,
+                    "text": "    std::cout << \"Hello World\" << std::endl; // Error: <iostream> not included",
+                    "is_error": false
+                },
+                {
+                    "lineno": 3,
+                    "text": "    std::vector<int> numbers; // Error: <vector> not included",
+                    "is_error": true
+                },
+                {
+                    "lineno": 4,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: General Error.\nExplanation: The compiler found an issue: 'vector' is not a member of 'std'\nFix: Check line 3 carefully."
+    },
+    {
+        "file": "missing_header.cpp",
+        "original_source": "int main() {\n    std::cout << \"Hello World\" << std::endl; // Error: <iostream> not included\n    std::vector<int> numbers; // Error: <vector> not included\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "expected primary-expression before 'int'",
+        "line": 3,
+        "column": 17,
+        "ast_context": {
+            "error_line": 3,
+            "error_col": 17,
+            "source_snippet": [
+                {
+                    "lineno": 1,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 2,
+                    "text": "    std::cout << \"Hello World\" << std::endl; // Error: <iostream> not included",
+                    "is_error": false
+                },
+                {
+                    "lineno": 3,
+                    "text": "    std::vector<int> numbers; // Error: <vector> not included",
+                    "is_error": true
+                },
+                {
+                    "lineno": 4,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Syntax Rules.\nExplanation: The compiler is confused because it expected something else here.\nTechnical Trace: expected primary-expression before 'int'\nFix: Look at the line *before* line 3. You might be missing a semicolon ';' or a closing parenthesis ')'."
+    },
+    {
+        "file": "sample_error.cpp",
+        "original_source": "#include <iostream>\n\nint main() {\n    int x = 10;\n    y = 20; // Error: 'y' was not declared in this scope\n    std::cout << \"Value of x: \" << x << std::endl // Error: expected ';' before 'return'\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "'y' was not declared in this scope",
+        "line": 5,
+        "column": 5,
+        "ast_context": {
+            "error_line": 5,
+            "error_col": 5,
+            "source_snippet": [
+                {
+                    "lineno": 2,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 3,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 4,
+                    "text": "    int x = 10;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "    y = 20; // Error: 'y' was not declared in this scope",
+                    "is_error": true
+                },
+                {
+                    "lineno": 6,
+                    "text": "    std::cout << \"Value of x: \" << x << std::endl // Error: expected ';' before 'return'",
+                    "is_error": false
+                },
+                {
+                    "lineno": 7,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 8,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Variable Declaration.\nExplanation: You are trying to use the variable 'y', but the compiler doesn't know what it is.\nFix: Make sure you have declared 'y' contents (e.g., 'int y;') before using it. Also check for typos."
+    },
+    {
+        "file": "sample_error.cpp",
+        "original_source": "#include <iostream>\n\nint main() {\n    int x = 10;\n    y = 20; // Error: 'y' was not declared in this scope\n    std::cout << \"Value of x: \" << x << std::endl // Error: expected ';' before 'return'\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "expected ';' before 'return'",
+        "line": 7,
+        "column": 5,
+        "ast_context": {
+            "error_line": 7,
+            "error_col": 5,
+            "source_snippet": [
+                {
+                    "lineno": 4,
+                    "text": "    int x = 10;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "    y = 20; // Error: 'y' was not declared in this scope",
+                    "is_error": false
+                },
+                {
+                    "lineno": 6,
+                    "text": "    std::cout << \"Value of x: \" << x << std::endl // Error: expected ';' before 'return'",
+                    "is_error": false
+                },
+                {
+                    "lineno": 7,
+                    "text": "    return 0;",
+                    "is_error": true
+                },
+                {
+                    "lineno": 8,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Syntax Rules.\nExplanation: The compiler is confused because it expected something else here.\nTechnical Trace: expected ';' before 'return'\nFix: Look at the line *before* line 7. You might be missing a semicolon ';' or a closing parenthesis ')'."
+    },
+    {
+        "file": "signature_mismatch.cpp",
+        "original_source": "void greet(int times) {\n    // do nothing\n}\n\nint main() {\n    greet(); // Error: too few arguments\n    greet(\"hello\"); // Error: invalid conversion / no matching function\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "too few arguments to function 'void greet(int)'",
+        "line": 6,
+        "column": 11,
+        "ast_context": {
+            "error_line": 6,
+            "error_col": 11,
+            "source_snippet": [
+                {
+                    "lineno": 3,
+                    "text": "}",
+                    "is_error": false
+                },
+                {
+                    "lineno": 4,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 6,
+                    "text": "    greet(); // Error: too few arguments",
+                    "is_error": true
+                },
+                {
+                    "lineno": 7,
+                    "text": "    greet(\"hello\"); // Error: invalid conversion / no matching function",
+                    "is_error": false
+                },
+                {
+                    "lineno": 8,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 9,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Function Signatures.\nExplanation: You are calling a function with the wrong number or type of arguments.\nFix: Check the function definition and ensure you are passing the correct parameters in the correct order."
+    },
+    {
+        "file": "signature_mismatch.cpp",
+        "original_source": "void greet(int times) {\n    // do nothing\n}\n\nint main() {\n    greet(); // Error: too few arguments\n    greet(\"hello\"); // Error: invalid conversion / no matching function\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "invalid conversion from 'const char*' to 'int' [-fpermissive]",
+        "line": 7,
+        "column": 18,
+        "ast_context": {
+            "error_line": 7,
+            "error_col": 18,
+            "source_snippet": [
+                {
+                    "lineno": 4,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 6,
+                    "text": "    greet(); // Error: too few arguments",
+                    "is_error": false
+                },
+                {
+                    "lineno": 7,
+                    "text": "    greet(\"hello\"); // Error: invalid conversion / no matching function",
+                    "is_error": true
+                },
+                {
+                    "lineno": 8,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 9,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: General Error.\nExplanation: The compiler found an issue: invalid conversion from 'const char*' to 'int' [-fpermissive]\nFix: Check line 7 carefully."
+    },
+    {
+        "file": "type_mismatch.cpp",
+        "original_source": "#include <iostream>\n#include <string>\n\nint main() {\n    std::string myString = \"Hello\";\n    int myNumber = \"World\"; // Error: invalid conversion/assignment\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "invalid conversion from 'const char*' to 'int' [-fpermissive]",
+        "line": 6,
+        "column": 20,
+        "ast_context": {
+            "error_line": 6,
+            "error_col": 20,
+            "source_snippet": [
+                {
+                    "lineno": 3,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 4,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 5,
+                    "text": "    std::string myString = \"Hello\";",
+                    "is_error": false
+                },
+                {
+                    "lineno": 6,
+                    "text": "    int myNumber = \"World\"; // Error: invalid conversion/assignment",
+                    "is_error": true
+                },
+                {
+                    "lineno": 7,
+                    "text": "    return 0;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 8,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: General Error.\nExplanation: The compiler found an issue: invalid conversion from 'const char*' to 'int' [-fpermissive]\nFix: Check line 6 carefully."
+    },
+    {
+        "file": "undeclared_template.cpp",
+        "original_source": "// undeclared_template.cpp\n// Week 7 Sample: Tests AST context around template and scope errors.\n\n#include <iostream>\n#include <vector>\n\ntemplate <typename T>\nT square(T val) {\n    return val * val;\n}\n\nint main() {\n    // Error 1: using undeclared variable inside a template call\n    std::cout << square(badVar) << std::endl;\n\n    // Error 2: calling the wrong overload (type mismatch)\n    std::vector<int> nums;\n    nums.push_back(\"not an int\");\n\n    // Error 3: missing semicolon before closing brace\n    int result = square(4)\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "'badVar' was not declared in this scope",
+        "line": 14,
+        "column": 25,
+        "ast_context": {
+            "error_line": 14,
+            "error_col": 25,
+            "source_snippet": [
+                {
+                    "lineno": 11,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 12,
+                    "text": "int main() {",
+                    "is_error": false
+                },
+                {
+                    "lineno": 13,
+                    "text": "    // Error 1: using undeclared variable inside a template call",
+                    "is_error": false
+                },
+                {
+                    "lineno": 14,
+                    "text": "    std::cout << square(badVar) << std::endl;",
+                    "is_error": true
+                },
+                {
+                    "lineno": 15,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 16,
+                    "text": "    // Error 2: calling the wrong overload (type mismatch)",
+                    "is_error": false
+                },
+                {
+                    "lineno": 17,
+                    "text": "    std::vector<int> nums;",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Variable Declaration.\nExplanation: You are trying to use the variable 'badVar', but the compiler doesn't know what it is.\nFix: Make sure you have declared 'badVar' contents (e.g., 'int badVar;') before using it. Also check for typos."
+    },
+    {
+        "file": "undeclared_template.cpp",
+        "original_source": "// undeclared_template.cpp\n// Week 7 Sample: Tests AST context around template and scope errors.\n\n#include <iostream>\n#include <vector>\n\ntemplate <typename T>\nT square(T val) {\n    return val * val;\n}\n\nint main() {\n    // Error 1: using undeclared variable inside a template call\n    std::cout << square(badVar) << std::endl;\n\n    // Error 2: calling the wrong overload (type mismatch)\n    std::vector<int> nums;\n    nums.push_back(\"not an int\");\n\n    // Error 3: missing semicolon before closing brace\n    int result = square(4)\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "no matching function for call to 'push_back(const char [11])'",
+        "line": 18,
+        "column": 32,
+        "ast_context": {
+            "error_line": 18,
+            "error_col": 32,
+            "source_snippet": [
+                {
+                    "lineno": 15,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 16,
+                    "text": "    // Error 2: calling the wrong overload (type mismatch)",
+                    "is_error": false
+                },
+                {
+                    "lineno": 17,
+                    "text": "    std::vector<int> nums;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 18,
+                    "text": "    nums.push_back(\"not an int\");",
+                    "is_error": true
+                },
+                {
+                    "lineno": 19,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 20,
+                    "text": "    // Error 3: missing semicolon before closing brace",
+                    "is_error": false
+                },
+                {
+                    "lineno": 21,
+                    "text": "    int result = square(4)",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Function Signatures.\nExplanation: You are calling a function with the wrong number or type of arguments.\nFix: Check the function definition and ensure you are passing the correct parameters in the correct order."
+    },
+    {
+        "file": "undeclared_template.cpp",
+        "original_source": "// undeclared_template.cpp\n// Week 7 Sample: Tests AST context around template and scope errors.\n\n#include <iostream>\n#include <vector>\n\ntemplate <typename T>\nT square(T val) {\n    return val * val;\n}\n\nint main() {\n    // Error 1: using undeclared variable inside a template call\n    std::cout << square(badVar) << std::endl;\n\n    // Error 2: calling the wrong overload (type mismatch)\n    std::vector<int> nums;\n    nums.push_back(\"not an int\");\n\n    // Error 3: missing semicolon before closing brace\n    int result = square(4)\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "invalid conversion from 'const char*' to 'std::vector<int>::value_type {aka int}' [-fpermissive]",
+        "line": 18,
+        "column": 32,
+        "ast_context": {
+            "error_line": 18,
+            "error_col": 32,
+            "source_snippet": [
+                {
+                    "lineno": 15,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 16,
+                    "text": "    // Error 2: calling the wrong overload (type mismatch)",
+                    "is_error": false
+                },
+                {
+                    "lineno": 17,
+                    "text": "    std::vector<int> nums;",
+                    "is_error": false
+                },
+                {
+                    "lineno": 18,
+                    "text": "    nums.push_back(\"not an int\");",
+                    "is_error": true
+                },
+                {
+                    "lineno": 19,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 20,
+                    "text": "    // Error 3: missing semicolon before closing brace",
+                    "is_error": false
+                },
+                {
+                    "lineno": 21,
+                    "text": "    int result = square(4)",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: General Error.\nExplanation: The compiler found an issue: invalid conversion from 'const char*' to 'std::vector<int>::value_type {aka int}' [-fpermissive]\nFix: Check line 18 carefully."
+    },
+    {
+        "file": "undeclared_template.cpp",
+        "original_source": "// undeclared_template.cpp\n// Week 7 Sample: Tests AST context around template and scope errors.\n\n#include <iostream>\n#include <vector>\n\ntemplate <typename T>\nT square(T val) {\n    return val * val;\n}\n\nint main() {\n    // Error 1: using undeclared variable inside a template call\n    std::cout << square(badVar) << std::endl;\n\n    // Error 2: calling the wrong overload (type mismatch)\n    std::vector<int> nums;\n    nums.push_back(\"not an int\");\n\n    // Error 3: missing semicolon before closing brace\n    int result = square(4)\n    return 0;\n}\n",
+        "error_type": "error",
+        "error_message": "expected ',' or ';' before 'return'",
+        "line": 22,
+        "column": 5,
+        "ast_context": {
+            "error_line": 22,
+            "error_col": 5,
+            "source_snippet": [
+                {
+                    "lineno": 19,
+                    "text": "",
+                    "is_error": false
+                },
+                {
+                    "lineno": 20,
+                    "text": "    // Error 3: missing semicolon before closing brace",
+                    "is_error": false
+                },
+                {
+                    "lineno": 21,
+                    "text": "    int result = square(4)",
+                    "is_error": false
+                },
+                {
+                    "lineno": 22,
+                    "text": "    return 0;",
+                    "is_error": true
+                },
+                {
+                    "lineno": 23,
+                    "text": "}",
+                    "is_error": false
+                }
+            ],
+            "ast_nodes": [],
+            "enclosing_func": null,
+            "enclosing_class": null,
+            "node_kinds": []
+        },
+        "annotation": "Programming Concept: Syntax Rules.\nExplanation: The compiler is confused because it expected something else here.\nTechnical Trace: expected ',' or ';' before 'return'\nFix: Look at the line *before* line 22. You might be missing a semicolon ';' or a closing parenthesis ')'."
+    }
+]

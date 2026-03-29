@@ -1,0 +1,830 @@
+[
+  {
+    "file": "undeclared1.cpp",
+    "original_source": "int main(){return z;}",
+    "error_type": "error",
+    "error_message": "'z' was not declared in this scope",
+    "line": 1,
+    "column": 14,
+    "ast_context": {
+      "error_line": 1,
+      "error_col": 14,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    return z;",
+          "is_error": true
+        },
+        {
+          "lineno": 2,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Variable Declaration.\nExplanation: You are trying to use the variable 'z', but the compiler does not know it exists at this point.\nFix: Declare the variable before using it: 'int z = 0;'"
+  },
+  {
+    "file": "undeclared2.cpp",
+    "original_source": "void f(){count++;}",
+    "error_type": "error",
+    "error_message": "'count' was not declared in this scope",
+    "line": 1,
+    "column": 9,
+    "ast_context": {
+      "error_line": 1,
+      "error_col": 9,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "void f(){",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    count++;",
+          "is_error": true
+        },
+        {
+          "lineno": 2,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Variable Declaration.\nExplanation: 'count' is used but never declared in this scope.\nFix: Add 'int count = 0;' before the function or as a parameter."
+  },
+  {
+    "file": "undeclared3.cpp",
+    "original_source": "int main(){if(flag){}}",
+    "error_type": "error",
+    "error_message": "'flag' was not declared in this scope",
+    "line": 1,
+    "column": 11,
+    "ast_context": {
+      "error_line": 1,
+      "error_col": 11,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    if(flag){}",
+          "is_error": true
+        },
+        {
+          "lineno": 2,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Variable Declaration.\nExplanation: 'flag' is referenced without being declared.\nFix: Declare 'bool flag = false;' before use."
+  },
+  {
+    "file": "syntax1.cpp",
+    "original_source": "int main(){int x=5\nreturn 0;}",
+    "error_type": "error",
+    "error_message": "expected ';' before 'return'",
+    "line": 2,
+    "column": 1,
+    "ast_context": {
+      "error_line": 2,
+      "error_col": 1,
+      "source_snippet": [
+        {
+          "lineno": 1,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "    int x=5",
+          "is_error": true
+        },
+        {
+          "lineno": 3,
+          "text": "    return 0;",
+          "is_error": false
+        },
+        {
+          "lineno": 4,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Syntax Rules.\nExplanation: Every statement in C++ must end with a semicolon. The compiler reached 'return' before seeing the ';'.\nFix: Add ';' at the end of 'int x=5'."
+  },
+  {
+    "file": "syntax2.cpp",
+    "original_source": "int main(){\nint arr[5]\nreturn 0;\n}",
+    "error_type": "error",
+    "error_message": "expected ';' before 'return'",
+    "line": 3,
+    "column": 1,
+    "ast_context": {
+      "error_line": 3,
+      "error_col": 1,
+      "source_snippet": [
+        {
+          "lineno": 2,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 3,
+          "text": "    int arr[5]",
+          "is_error": true
+        },
+        {
+          "lineno": 4,
+          "text": "    return 0;",
+          "is_error": false
+        },
+        {
+          "lineno": 5,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Syntax Rules.\nExplanation: Missing semicolon after array declaration.\nFix: Write 'int arr[5];'"
+  },
+  {
+    "file": "syntax3.cpp",
+    "original_source": "int main(){\nif(x > 0\n    x++;\n}",
+    "error_type": "error",
+    "error_message": "expected ')' before 'x'",
+    "line": 3,
+    "column": 4,
+    "ast_context": {
+      "error_line": 3,
+      "error_col": 4,
+      "source_snippet": [
+        {
+          "lineno": 2,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 3,
+          "text": "    if(x > 0",
+          "is_error": true
+        },
+        {
+          "lineno": 4,
+          "text": "        x++;",
+          "is_error": false
+        },
+        {
+          "lineno": 5,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Syntax Rules.\nExplanation: The closing parenthesis of the 'if' condition is missing.\nFix: Write 'if(x > 0)'"
+  },
+  {
+    "file": "syntax4.cpp",
+    "original_source": "int main(){\nfor(int i=0 i<10; i++){}\n}",
+    "error_type": "error",
+    "error_message": "expected ';' before 'i'",
+    "line": 2,
+    "column": 12,
+    "ast_context": {
+      "error_line": 2,
+      "error_col": 12,
+      "source_snippet": [
+        {
+          "lineno": 1,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "    for(int i=0 i<10; i++){}",
+          "is_error": true
+        },
+        {
+          "lineno": 3,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Syntax Rules.\nExplanation: The 'for' loop requires semicolons between its three parts.\nFix: Write 'for(int i=0; i<10; i++)'"
+  },
+  {
+    "file": "link1.cpp",
+    "original_source": "int add(int,int);\nint main(){return add(1,2);}",
+    "error_type": "error",
+    "error_message": "undefined reference to 'add(int, int)'",
+    "line": 2,
+    "column": 15,
+    "ast_context": {
+      "error_line": 2,
+      "error_col": 15,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "int add(int,int);",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "    return add(1,2);",
+          "is_error": true
+        },
+        {
+          "lineno": 3,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Linking.\nExplanation: 'add' is declared but never defined. The linker cannot find the function body.\nFix: Provide the definition: 'int add(int a,int b){return a+b;}'"
+  },
+  {
+    "file": "link2.cpp",
+    "original_source": "extern int globalVal;\nint main(){return globalVal;}",
+    "error_type": "error",
+    "error_message": "undefined reference to 'globalVal'",
+    "line": 2,
+    "column": 15,
+    "ast_context": {
+      "error_line": 2,
+      "error_col": 15,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "extern int globalVal;",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "    return globalVal;",
+          "is_error": true
+        },
+        {
+          "lineno": 3,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Linking.\nExplanation: 'globalVal' is declared with 'extern' but not defined in any translation unit.\nFix: Define it in exactly one .cpp file: 'int globalVal = 0;'"
+  },
+  {
+    "file": "access1.cpp",
+    "original_source": "class A{private: int v;};\nint main(){A a; a.v=1;}",
+    "error_type": "error",
+    "error_message": "'int A::v' is private within this context",
+    "line": 2,
+    "column": 18,
+    "ast_context": {
+      "error_line": 2,
+      "error_col": 18,
+      "source_snippet": [
+        {
+          "lineno": -1,
+          "text": "class A{private: int v;};",
+          "is_error": false
+        },
+        {
+          "lineno": 0,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    A a;",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "    a.v=1;",
+          "is_error": true
+        },
+        {
+          "lineno": 3,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Encapsulation (Access Modifiers).\nExplanation: 'v' is private and cannot be accessed outside class A.\nFix: Add a public setter: 'void setV(int x){ v=x; }'"
+  },
+  {
+    "file": "access2.cpp",
+    "original_source": "class B{protected: double d;};\nclass C:public B{};\nint main(){C c; c.d=3.14;}",
+    "error_type": "error",
+    "error_message": "'double B::d' is protected within this context",
+    "line": 3,
+    "column": 15,
+    "ast_context": {
+      "error_line": 3,
+      "error_col": 15,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "class B{protected: double d;};",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "class C:public B{};",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "int main(){C c;",
+          "is_error": false
+        },
+        {
+          "lineno": 3,
+          "text": "    c.d=3.14;",
+          "is_error": true
+        },
+        {
+          "lineno": 4,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Encapsulation (Access Modifiers).\nExplanation: 'protected' members are accessible within derived classes but not from outside.\nFix: Access 'd' through a method inside C, or change its visibility to public."
+  },
+  {
+    "file": "const1.cpp",
+    "original_source": "int main(){const int N=10; N=20;}",
+    "error_type": "error",
+    "error_message": "assignment of read-only variable 'N'",
+    "line": 1,
+    "column": 26,
+    "ast_context": {
+      "error_line": 1,
+      "error_col": 26,
+      "source_snippet": [
+        {
+          "lineno": -1,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 0,
+          "text": "    const int N=10;",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    N=20;",
+          "is_error": true
+        },
+        {
+          "lineno": 2,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Constants.\nExplanation: 'const' variables cannot be modified after initialisation.\nFix: Remove 'const' if the value must change, or use a different variable."
+  },
+  {
+    "file": "const2.cpp",
+    "original_source": "void f(const int& x){x++;}",
+    "error_type": "error",
+    "error_message": "increment of read-only reference 'x'",
+    "line": 1,
+    "column": 22,
+    "ast_context": {
+      "error_line": 1,
+      "error_col": 22,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "void f(const int& x){",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    x++;",
+          "is_error": true
+        },
+        {
+          "lineno": 2,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Constants.\nExplanation: 'x' is a const reference \u2014 it guarantees the original value is not modified.\nFix: Remove 'const' from the parameter if you need to modify it."
+  },
+  {
+    "file": "const3.cpp",
+    "original_source": "const double PI=3.14;\nint main(){PI=3.0;}",
+    "error_type": "error",
+    "error_message": "assignment of read-only variable 'PI'",
+    "line": 2,
+    "column": 11,
+    "ast_context": {
+      "error_line": 2,
+      "error_col": 11,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "const double PI=3.14;",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "    PI=3.0;",
+          "is_error": true
+        },
+        {
+          "lineno": 3,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Constants.\nExplanation: PI is a compile-time constant and cannot be reassigned.\nFix: Use a different variable for the modified value."
+  },
+  {
+    "file": "sig1.cpp",
+    "original_source": "void print(int x,int y);\nint main(){print(5);}",
+    "error_type": "error",
+    "error_message": "too few arguments to function 'void print(int, int)'",
+    "line": 2,
+    "column": 11,
+    "ast_context": {
+      "error_line": 2,
+      "error_col": 11,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "void print(int x,int y);",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "    print(5);",
+          "is_error": true
+        },
+        {
+          "lineno": 3,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Function Signatures.\nExplanation: 'print' expects 2 arguments but only 1 was given.\nFix: Call as 'print(5, 0)' or add a default parameter."
+  },
+  {
+    "file": "sig2.cpp",
+    "original_source": "int square(int x);\nint main(){square(2,3);}",
+    "error_type": "error",
+    "error_message": "too many arguments to function 'int square(int)'",
+    "line": 2,
+    "column": 11,
+    "ast_context": {
+      "error_line": 2,
+      "error_col": 11,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "int square(int x);",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "    square(2,3);",
+          "is_error": true
+        },
+        {
+          "lineno": 3,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Function Signatures.\nExplanation: 'square' takes 1 argument, but 2 were provided.\nFix: Call as 'square(2)' or update the function signature."
+  },
+  {
+    "file": "sig3.cpp",
+    "original_source": "void greet(std::string name);\nint main(){greet(42);}",
+    "error_type": "error",
+    "error_message": "invalid conversion from 'int' to 'std::string'",
+    "line": 2,
+    "column": 11,
+    "ast_context": {
+      "error_line": 2,
+      "error_col": 11,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "void greet(std::string name);",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "    greet(42);",
+          "is_error": true
+        },
+        {
+          "lineno": 3,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Function Signatures.\nExplanation: You passed an int where a string is expected \u2014 types do not match.\nFix: Pass a string literal: 'greet(\"Alice\")'"
+  },
+  {
+    "file": "sig4.cpp",
+    "original_source": "template<class T>\nvoid show(T val);\nint main(){show();}",
+    "error_type": "error",
+    "error_message": "no matching function for call to 'show()'",
+    "line": 3,
+    "column": 11,
+    "ast_context": {
+      "error_line": 3,
+      "error_col": 11,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "template<class T>",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "void show(T val);",
+          "is_error": false
+        },
+        {
+          "lineno": 2,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 3,
+          "text": "    show();",
+          "is_error": true
+        },
+        {
+          "lineno": 4,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: Function Signatures.\nExplanation: Template function 'show' cannot be instantiated without an argument.\nFix: Provide an argument: 'show(42)' or 'show(\"hello\")'"
+  },
+  {
+    "file": "hdr1.cpp",
+    "original_source": "int main(){std::set<int> s;}",
+    "error_type": "error",
+    "error_message": "'set' is not a member of 'std'",
+    "line": 1,
+    "column": 15,
+    "ast_context": {
+      "error_line": 1,
+      "error_col": 15,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    std::set<int> s;",
+          "is_error": true
+        },
+        {
+          "lineno": 2,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: General Error.\nExplanation: 'std::set' requires the <set> header.\nFix: Add '#include <set>' at the top of your file."
+  },
+  {
+    "file": "hdr2.cpp",
+    "original_source": "int main(){std::queue<int> q;}",
+    "error_type": "error",
+    "error_message": "'queue' is not a member of 'std'",
+    "line": 1,
+    "column": 15,
+    "ast_context": {
+      "error_line": 1,
+      "error_col": 15,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    std::queue<int> q;",
+          "is_error": true
+        },
+        {
+          "lineno": 2,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: General Error.\nExplanation: std::queue requires the <queue> header.\nFix: Add '#include <queue>' at the top."
+  },
+  {
+    "file": "hdr3.cpp",
+    "original_source": "int main(){printf(\"%d\",1);}",
+    "error_type": "error",
+    "error_message": "'printf' was not declared in this scope",
+    "line": 1,
+    "column": 11,
+    "ast_context": {
+      "error_line": 1,
+      "error_col": 11,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    printf(\"%d\",1);",
+          "is_error": true
+        },
+        {
+          "lineno": 2,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: General Error.\nExplanation: 'printf' is a C function that requires <cstdio>.\nFix: Add '#include <cstdio>' or use 'std::cout' with <iostream>."
+  },
+  {
+    "file": "hdr4.cpp",
+    "original_source": "int main(){std::stack<int> s;}",
+    "error_type": "error",
+    "error_message": "'stack' is not a member of 'std'",
+    "line": 1,
+    "column": 15,
+    "ast_context": {
+      "error_line": 1,
+      "error_col": 15,
+      "source_snippet": [
+        {
+          "lineno": 0,
+          "text": "int main(){",
+          "is_error": false
+        },
+        {
+          "lineno": 1,
+          "text": "    std::stack<int> s;",
+          "is_error": true
+        },
+        {
+          "lineno": 2,
+          "text": "}",
+          "is_error": false
+        }
+      ],
+      "ast_nodes": [],
+      "enclosing_func": null,
+      "enclosing_class": null,
+      "node_kinds": []
+    },
+    "annotation": "Programming Concept: General Error.\nExplanation: std::stack requires the <stack> header.\nFix: Add '#include <stack>' at the top."
+  }
+]
